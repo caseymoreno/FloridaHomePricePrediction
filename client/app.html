@@ -4,60 +4,75 @@
     <title>Florida Home Price Prediction</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="app.js"></script>
-	<link rel="stylesheet" href="app.css">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="header">How much is my Florida Home Worth?</div>
 <section class="main">
-    <div class="input-form">
-        <form class="form">
-            <h2>Area (Square Feet)</h2>
-            <input class="area"  type="text" id="uiSqft" class="floatLabel" name="Squareft" value="1000">
-            <h2>Beds</h2>
-            <div class="switch-field">
-                <select id="bed-select-menu" onchange="getBedValue();">
-                    <option value="1" name="uiBHK">1</option>
-                    <option value="2" name="uiBHK">2</option>
-                    <option value="3" name="uiBHK">3</option>
-                    <option value="4" name="uiBHK">4</option>
-                    <option value="5" name="uiBHK">5</option>
-                    <option value="6" name="uiBHK">6</option>
-                    <option value="7" name="uiBHK">7</option>
-                    <option value="8" name="uiBHK">8</option>
-                </select>
+    <h1 class="text-center title mb-5 mt-5">How much is my Florida Home Worth?</h1>
+    <div class="title-border mb-5"></div>
+
+    <div class="container w-100">
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="uiSqft" class="form-label mb-3">Area (Square Feet)</label>
+                        <input type="text" class="form-control" type="number" id="uiSqft" placeholder="Area sq. ft" name="Squareft">
+                    </div>
+
+                    <label for="bed-select-menu" class="form-label mb-3">How many Bedrooms?</label>
+                    <select class="form-select mb-3" aria-label="Default select example" id="bed-select-menu" onchange="getBedValue();">
+                        <option selected>Bedrooms</option>
+                        <option value="1" name="uiBHK">1</option>
+                        <option value="2" name="uiBHK">2</option>
+                        <option value="3" name="uiBHK">3</option>
+                        <option value="4" name="uiBHK">4</option>
+                        <option value="5" name="uiBHK">5</option>
+                        <option value="6" name="uiBHK">6</option>
+                        <option value="7" name="uiBHK">7</option>
+                        <option value="8" name="uiBHK">8</option>
+                    </select>
+
+                    <label for="bed-select-menu" class="form-label mb-3">How many Bathrooms?</label>
+                    <select class="form-select mb-3" aria-label="Default select example" id="bath-select-menu" onchange="getBathValue();">
+                        <option selected>Bathrooms</option>
+                        <option value="1" name="uiBathrooms">1</option>
+                        <option value="2" name="uiBathrooms">2</option>
+                        <option value="3" name="uiBathrooms">3</option>
+                        <option value="4" name="uiBathrooms">4</option>
+                        <option value="5" name="uiBathrooms">5</option>
+                        <option value="6" name="uiBathrooms">6</option>
+                        <option value="7" name="uiBathrooms">7</option>
+                        <option value="8" name="uiBathrooms">8</option>
+                    </select>
+
+                    <label for="bed-select-menu" class="form-label mb-3">Locations</label>
+                    <select class="form-select mb-3" name="location" id="uiLocations">
+                        <option value="" disabled="disabled" selected="selected">Choose a Location</option>
+                        <option>Miami</option>
+                    </select>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-success btn-lg mt-3" onclick="onClickedEstimatePrice()" type="button">Get Estimate Price</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <h2 class="text-center mb-5">Your Home's Estimated Worth</h2>    
+                    <div id="uiEstimatedPrice" class="m5-10 text-center result">	<h2></h2> </div>
+                </div>
+
             </div>
         </form>
-        <form class="form">
-            <h2>Bath</h2>
-            <div class="switch-field">
-                <select id="bath-select-menu" onchange="getBathValue();">
-                    <option value="1" name="uiBathrooms">1</option>
-                    <option value="2" name="uiBathrooms">2</option>
-                    <option value="3" name="uiBathrooms">3</option>
-                    <option value="4" name="uiBathrooms">4</option>
-                    <option value="5" name="uiBathrooms">5</option>
-                    <option value="6" name="uiBathrooms">6</option>
-                    <option value="7" name="uiBathrooms">7</option>
-                    <option value="8" name="uiBathrooms">8</option>
-                </select>
-            </div>
-                <h2>Location</h2>
-            <div>
-        <select class="location" name="" id="uiLocations">
-            <option value="" disabled="disabled" selected="selected">Choose a Location</option>
-                <option>Miami</option>
-        </select>
-        </div>
-            <button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate Price</button>
-        </form>
     </div>
-
-    <div class="result">
-        <h2>Your Estimated Home Worth:</h2>
-        <div id="uiEstimatedPrice" class="result">	<h2></h2> </div>
-    </div>
-
+    
 </section>
-
 </body>
 </html>

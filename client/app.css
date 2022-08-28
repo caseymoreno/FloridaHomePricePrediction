@@ -1,20 +1,23 @@
 
-
-html, body{
-    background: url('./bg.jpg');
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-size:100% 100%;
-    height: 100%;
+body{
+    background-color: #0a192f;
+    font-family: 'Roboto Mono', monospace;
+    color: #ccd6f6;
 }
-
-.main{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+section{
+    width: 100%;
 }
-
-
-
-#uiEstimatedPrice{
-    transition: 1s;
+.title{
+    font-weight: 600;
+    font-size: 38px;
+}
+.title-border{
+    border-bottom: 10px solid #ccd6f6;
+}
+label{
+    font-size: 16px;
+}
+.result h2{
+    color: #64ffda;
+    font-size: 36px;
 }
